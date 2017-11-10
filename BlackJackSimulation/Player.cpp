@@ -5,6 +5,11 @@ Player::~Player()
 	cardVector.clear();
 }
 
+bool Player::getStands()
+{
+	return stands;
+}
+
 void Player::calculateCardsValue()
 {
 	cardsValue = 0;

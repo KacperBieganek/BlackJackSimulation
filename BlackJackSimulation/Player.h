@@ -14,6 +14,7 @@ public:
 	virtual ~Player();
 	virtual std::string drawCard() = 0;
 	virtual bool shouldStand() = 0;
+	bool getStands();
 	void calculateCardsValue();
 	void nextRound();
 	int getCardValue();

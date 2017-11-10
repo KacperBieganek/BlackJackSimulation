@@ -6,4 +6,5 @@ class SafePlayer :
 public:
 	SafePlayer();
 	virtual ~SafePlayer();
+	bool shouldStand() override;
 };
