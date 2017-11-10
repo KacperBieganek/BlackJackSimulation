@@ -6,5 +6,6 @@ class Croupier :
 public:
 	Croupier();
 	virtual ~Croupier();
+	bool shouldStand() override;
 };
 
