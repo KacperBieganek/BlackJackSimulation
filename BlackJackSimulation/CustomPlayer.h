@@ -1,12 +1,11 @@
 #pragma once
 #include "Player.h"
-class Croupier :
+class CustomPlayer :
 	public Player
 {
 public:
-	Croupier();
-	virtual ~Croupier();
+	CustomPlayer();
+	virtual ~CustomPlayer();
 	bool shouldStand() override;
-	
 };
 

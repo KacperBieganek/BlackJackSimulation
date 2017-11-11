@@ -1,7 +1,6 @@
 #pragma once
 #include "Player.h"
-class SafePlayer :
-	public Player
+class SafePlayer : public Player
 {
 public:
 	SafePlayer();

@@ -1,51 +1,51 @@
 #include "SafePlayer.h"
 #include <iostream>
 #include <fstream>
+#include <Memory>
+#include <stack>
 
 
-bool fillDeck(std::string filePath, std::vector<std::string>& vec);
+bool fillDeck(std::string filePath, std::stack<std::string>& vec);
 
 int main(int argc, char** argv)
 {
-	std::vector<std::string> vectorOfCards;
-	std::vector<Player> players;
+	std::stack<std::string> stackOfCards;
+	//std::vector<std::shared_ptr<Player>> players;
+	std::shared_ptr<Player> cautionPlayer(new SafePlayer());
 	try {
 		if (argc < 2)
 			throw - 1;
 		else {
-			if (!(fillDeck(argv[1], vectorOfCards)))
-				throw - 2;
+			if (fillDeck(argv[1], stackOfCards) && stackOfCards.size() == 52)
+				std::cout << "Deck loaded correctly" << std::endl;
 		}
 	}
 	catch (const int err) {
 		switch (err)
 		{
-		case -1: std::cout << "Too little arguments, please include path to deck into starting arguments" << std::endl; break;
-		case -2: std::cout << "Failed to load the deck" << std::endl; break;
+		case -1: std::cout << "Too few arguments, please include path to deck into starting arguments" << std::endl; break;
+		case -2: std::cout << "Failed to load the deck (File open error)" << std::endl; break;
 		}
-		return -1;
+		return err;
 	}
-
-	for (size_t i = 0; i < vectorOfCards.size(); i++)
-		std::cout << vectorOfCards.at(i) << std::endl;
 	return 0;
 }
 
 
-bool fillDeck(std::string filePath, std::vector<std::string>& vec) {
-	std::ifstream file(filePath, std::ios::in);
-	if (file.is_open()) {
-		std::string allCards = "";
-		std::getline(file, allCards);
-		std::string delimiter = ";";
-		size_t pos = 0;
-		while ((pos = allCards.find(delimiter)) != std::string::npos) {
-			vec.push_back(allCards.substr(0, allCards.find(delimiter)));
-			allCards.erase(0, allCards.find(delimiter) + delimiter.length());
+bool fillDeck(std::string filePath, std::stack<std::string>& vec) {
+		std::ifstream file(filePath, std::ios::in);
+		if (file.is_open()) {
+			std::string allCards = "";
+			std::getline(file, allCards);
+			std::string delimiter = ";";
+			size_t pos = 0;
+			while ((pos = allCards.find(delimiter)) != std::string::npos) {
+				vec.push(allCards.substr(0, allCards.find(delimiter)));
+				allCards.erase(0, allCards.find(delimiter) + delimiter.length());
+			}
 		}
-	}
-	else
-		return false;
+		else
+			throw -2;
 
 	return true;
 }

@@ -5,6 +5,14 @@ Player::~Player()
 	cardVector.clear();
 }
 
+std::string Player::drawCard(std::stack<std::string>& deckOfCards)
+{
+	std::string tmp = deckOfCards.top();
+	deckOfCards.pop();
+	cardVector.push_back(tmp);
+	return tmp;
+}
+
 bool Player::getStands()
 {
 	return stands;

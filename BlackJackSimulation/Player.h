@@ -1,18 +1,19 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <stack>
 
 
 class Player
 {
 private:
-	std::vector<std::string> cardVector;
 	int cardsValue;
 	bool stands;
-
+protected:
+	std::vector<std::string> cardVector;
 public: 
 	virtual ~Player();
-	virtual std::string drawCard() = 0;
+	std::string drawCard(std::stack<std::string>& deckOfCards);
 	virtual bool shouldStand() = 0;
 	bool getStands();
 	void calculateCardsValue();
