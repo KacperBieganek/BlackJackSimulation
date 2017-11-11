@@ -36,6 +36,7 @@ int main(int argc, char** argv)
 		return err;
 	}
 	GameUtility::playGame(cautionPlayer, croupier, stackOfCards);
+	std::cout << "==============================================================================" << std::endl;
 	GameUtility::playGame(customPlayer, croupier, stackOfCards);
 	return 0;
 }

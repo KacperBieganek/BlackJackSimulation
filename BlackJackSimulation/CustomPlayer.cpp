@@ -73,4 +73,5 @@ void CustomPlayer::nextRound()
 	cardsValue = 0;
 	cardVector.clear();
 	dealersCardValue = 0;
+	hasAce = false;
 }
