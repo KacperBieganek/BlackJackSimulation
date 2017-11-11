@@ -142,12 +142,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Croupier.cpp" />
+    <ClCompile Include="CustomPlayer.cpp" />
+    <ClCompile Include="GameUtility.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SafePlayer.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Croupier.h" />
+    <ClInclude Include="CustomPlayer.h" />
+    <ClInclude Include="GameUtility.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SafePlayer.h" />
   </ItemGroup>

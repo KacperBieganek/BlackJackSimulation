@@ -2,14 +2,6 @@
 
 
 
-GameUtility::GameUtility()
-{
-}
-
-
-GameUtility::~GameUtility()
-{
-}
 void GameUtility::playGame(std::shared_ptr<CustomPlayer> player, std::shared_ptr<Player> croupier, std::stack<std::string> deck)
 {
 	std::cout << "[Game started with player: " << player->playerName << "]" << std::endl;
@@ -147,3 +139,20 @@ bool GameUtility::playRound(std::shared_ptr<Player> player, std::shared_ptr<Play
 
 
 
+bool GameUtility::fillDeck(std::string filePath, std::stack<std::string>& deck) {
+	std::ifstream file(filePath, std::ios::in);
+	if (file.is_open()) {
+		std::string allCards = "";
+		std::getline(file, allCards);
+		std::string delimiter = ";";
+		size_t pos = 0;
+		while ((pos = allCards.find(delimiter)) != std::string::npos) {
+			deck.push(allCards.substr(0, allCards.find(delimiter)));
+			allCards.erase(0, allCards.find(delimiter) + delimiter.length());
+		}
+	}
+	else
+		throw - 2;
+
+	return true;
+}

@@ -2,17 +2,13 @@
 #include "Croupier.h"
 #include "CustomPlayer.h"
 #include "GameUtility.h"
-#include <fstream>
-#include <Memory>
 #include <stack>
 
 
-bool fillDeck(std::string filePath, std::stack<std::string>& vec);
 
 int main(int argc, char** argv)
 {
 	std::stack<std::string> stackOfCards;
-	//std::vector<std::shared_ptr<Player>> players;
 	std::shared_ptr<Player> cautionPlayer(new SafePlayer("Caution player"));
 	std::shared_ptr<Player> croupier(new Croupier("Croupier"));
 	std::shared_ptr<CustomPlayer> customPlayer(new CustomPlayer("Custom player"));
@@ -20,7 +16,7 @@ int main(int argc, char** argv)
 		if (argc < 2)
 			throw - 1;
 		else {
-			if (fillDeck(argv[1], stackOfCards) && stackOfCards.size() == 52)
+			if (GameUtility::fillDeck(argv[1], stackOfCards) && stackOfCards.size() == 52)
 				std::cout << "Deck loaded correctly" << std::endl;
 			else
 				throw - 3;
@@ -42,20 +38,3 @@ int main(int argc, char** argv)
 }
 
 
-bool fillDeck(std::string filePath, std::stack<std::string>& vec) {
-		std::ifstream file(filePath, std::ios::in);
-		if (file.is_open()) {
-			std::string allCards = "";
-			std::getline(file, allCards);
-			std::string delimiter = ";";
-			size_t pos = 0;
-			while ((pos = allCards.find(delimiter)) != std::string::npos) {
-				vec.push(allCards.substr(0, allCards.find(delimiter)));
-				allCards.erase(0, allCards.find(delimiter) + delimiter.length());
-			}
-		}
-		else
-			throw -2;
-
-	return true;
-}
