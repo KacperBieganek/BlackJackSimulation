@@ -2,7 +2,7 @@
 
 
 
-SafePlayer::SafePlayer() 
+SafePlayer::SafePlayer(std::string playerName) :Player(playerName)
 {
 }
 
@@ -11,10 +11,10 @@ SafePlayer::~SafePlayer()
 {
 }
 
-bool SafePlayer::shouldStand()
+void SafePlayer::shouldStand()
 {
 	if (getCardValue() >= 12)
-		return true;
+		stands = true;
 	else
-	return false;
+		stands = false;
 }

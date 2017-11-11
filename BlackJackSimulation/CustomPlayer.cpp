@@ -2,7 +2,7 @@
 
 
 
-CustomPlayer::CustomPlayer()
+CustomPlayer::CustomPlayer(std::string playerName) : Player(playerName)
 {
 }
 
@@ -11,7 +11,7 @@ CustomPlayer::~CustomPlayer()
 {
 }
 
-bool CustomPlayer::shouldStand()
+void CustomPlayer::shouldStand()
 {
-	return false;
+	stands = false;
 }

@@ -4,8 +4,8 @@ class CustomPlayer :
 	public Player
 {
 public:
-	CustomPlayer();
+	CustomPlayer(std::string playerName);
 	virtual ~CustomPlayer();
-	bool shouldStand() override;
+	void shouldStand() override;
 };
 

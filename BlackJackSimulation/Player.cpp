@@ -10,6 +10,7 @@ std::string Player::drawCard(std::stack<std::string>& deckOfCards)
 	std::string tmp = deckOfCards.top();
 	deckOfCards.pop();
 	cardVector.push_back(tmp);
+	calculateCardsValue();
 	return tmp;
 }
 
@@ -21,6 +22,7 @@ bool Player::getStands()
 void Player::calculateCardsValue()
 {
 	cardsValue = 0;
+	size_t amountOfAces = 0;
 	for (size_t i = 0; i < cardVector.size(); i++)
 	{
 		std::string tmp = cardVector.at(i);
@@ -50,11 +52,13 @@ void Player::calculateCardsValue()
 			cardsValue += 10;
 		else
 		{
-			if (cardsValue > 11)
-				cardsValue += 1;
-			else
-				cardsValue += 11;
+			cardsValue += 11;
+			++amountOfAces;
 		}
+	}
+	while (cardsValue > 21 && amountOfAces--)
+	{
+		cardsValue -= 10;
 	}
 }
 
@@ -68,4 +72,14 @@ void Player::nextRound()
 int Player::getCardValue()
 {
 	return cardsValue;
+}
+
+void Player::printRoundInfo()
+{
+	std::cout << playerName << " : ";
+	for (size_t i = 0; i < cardVector.size(); i++)
+	{
+		std::cout << cardVector.at(i) << ", ";
+	}
+	std::cout << " : " << cardsValue << std::endl;
 }

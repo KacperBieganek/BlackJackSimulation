@@ -2,21 +2,25 @@
 #include <string>
 #include <vector>
 #include <stack>
+#include <iostream>
 
 
 class Player
 {
 private:
 	int cardsValue;
-	bool stands;
+	void calculateCardsValue();
 protected:
+	bool stands;
 	std::vector<std::string> cardVector;
 public: 
+	const std::string playerName;
+	Player(std::string playerName):playerName(playerName) { cardsValue = 0;  stands = false;}
 	virtual ~Player();
 	std::string drawCard(std::stack<std::string>& deckOfCards);
-	virtual bool shouldStand() = 0;
+	virtual void shouldStand() = 0;
 	bool getStands();
-	void calculateCardsValue();
 	void nextRound();
 	int getCardValue();
+	void printRoundInfo();
 };

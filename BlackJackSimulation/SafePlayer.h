@@ -3,7 +3,7 @@
 class SafePlayer : public Player
 {
 public:
-	SafePlayer();
+	SafePlayer(std::string playerName);
 	virtual ~SafePlayer();
-	bool shouldStand() override;
+	void shouldStand() override;
 };

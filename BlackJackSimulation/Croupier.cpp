@@ -2,7 +2,7 @@
 
 
 
-Croupier::Croupier()
+Croupier::Croupier(std::string playerName) : Player(playerName)
 {
 }
 
@@ -11,10 +11,10 @@ Croupier::~Croupier()
 {
 }
 
-bool Croupier::shouldStand()
+void Croupier::shouldStand()
 {
 	if (getCardValue() >= 17)
-		return true;
+		stands= true;
 	else
-	return false;
+		stands = false;
 }

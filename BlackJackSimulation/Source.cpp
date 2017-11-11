@@ -1,5 +1,7 @@
 #include "SafePlayer.h"
-#include <iostream>
+#include "Croupier.h"
+#include "CustomPlayer.h"
+#include "GameUtility.h"
 #include <fstream>
 #include <Memory>
 #include <stack>
@@ -11,13 +13,17 @@ int main(int argc, char** argv)
 {
 	std::stack<std::string> stackOfCards;
 	//std::vector<std::shared_ptr<Player>> players;
-	std::shared_ptr<Player> cautionPlayer(new SafePlayer());
+	std::shared_ptr<Player> cautionPlayer(new SafePlayer("Caution player"));
+	std::shared_ptr<Player> croupier(new Croupier("Croupier"));
+	std::shared_ptr<Player> customPlayer(new CustomPlayer("Custom player"));
 	try {
 		if (argc < 2)
 			throw - 1;
 		else {
 			if (fillDeck(argv[1], stackOfCards) && stackOfCards.size() == 52)
 				std::cout << "Deck loaded correctly" << std::endl;
+			else
+				throw - 3;
 		}
 	}
 	catch (const int err) {
@@ -25,9 +31,11 @@ int main(int argc, char** argv)
 		{
 		case -1: std::cout << "Too few arguments, please include path to deck into starting arguments" << std::endl; break;
 		case -2: std::cout << "Failed to load the deck (File open error)" << std::endl; break;
+		case -3: std::cout << "Deck loaded incorrectly, deck size is diffrent than 52" << std::endl; break;
 		}
 		return err;
 	}
+	GameUtility::playGame(cautionPlayer, croupier, stackOfCards);
 	return 0;
 }
 

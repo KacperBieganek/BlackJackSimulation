@@ -4,9 +4,9 @@ class Croupier :
 	public Player
 {
 public:
-	Croupier();
+	Croupier(std::string playerName);
 	virtual ~Croupier();
-	bool shouldStand() override;
+	void shouldStand() override;
 	
 };
 
