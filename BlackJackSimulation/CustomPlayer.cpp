@@ -4,7 +4,6 @@
 
 CustomPlayer::CustomPlayer(std::string playerName) : Player(playerName)
 {
-	hasAce = false;
 }
 
 
@@ -17,13 +16,21 @@ void CustomPlayer::shouldStand()
 	if (hasAce) {
 		if (cardsValue <= 17)
 			stands = false;
-		else if (cardsValue == 18 && (dealersCard == "9" || dealersCard == "10"))
+		else if (cardsValue == 18 && (dealersCardValue == 9 || dealersCardValue == 10))
 			stands = false;
 		else
 			stands = true;
   }
 	else
 	{
+		if (cardsValue <= 11)
+			stands = false;
+		else if (cardsValue == 12 && (dealersCardValue == 2 || dealersCardValue == 3))
+			stands = false;
+		else if ((cardsValue > 11 && cardsValue < 17) && (dealersCardValue > 6 && dealersCardValue < 12))
+			stands = false;
+		else
+			stands = true;
 
 	}
 }
@@ -65,5 +72,5 @@ void CustomPlayer::nextRound()
 	stands = false;
 	cardsValue = 0;
 	cardVector.clear();
-	dealersCard.clear();
+	dealersCardValue = 0;
 }

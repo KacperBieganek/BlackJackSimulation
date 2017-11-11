@@ -5,7 +5,6 @@ class CustomPlayer :
 {
 private:
 	size_t dealersCardValue;
-	bool hasAce;
 public:
 	CustomPlayer(std::string playerName);
 	virtual ~CustomPlayer();

@@ -8,6 +8,8 @@ Player::~Player()
 std::string Player::drawCard(std::stack<std::string>& deckOfCards)
 {
 	std::string tmp = deckOfCards.top();
+	if (tmp == "A")
+		hasAce = true;
 	deckOfCards.pop();
 	cardVector.push_back(tmp);
 	calculateCardsValue();
@@ -67,6 +69,7 @@ void Player::nextRound()
 	stands= false;
 	cardsValue = 0;
 	cardVector.clear();
+	hasAce = false;
 }
 
 int Player::getCardsValue()
