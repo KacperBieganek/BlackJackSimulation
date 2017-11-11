@@ -8,9 +8,9 @@
 class Player
 {
 private:
-	int cardsValue;
 	void calculateCardsValue();
 protected:
+	int cardsValue;
 	bool stands;
 	std::vector<std::string> cardVector;
 public: 
@@ -20,7 +20,7 @@ public:
 	std::string drawCard(std::stack<std::string>& deckOfCards);
 	virtual void shouldStand() = 0;
 	bool getStands();
-	void nextRound();
-	int getCardValue();
+	virtual void nextRound();
+	int getCardsValue();
 	void printRoundInfo();
 };

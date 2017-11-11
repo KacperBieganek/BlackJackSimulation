@@ -69,7 +69,7 @@ void Player::nextRound()
 	cardVector.clear();
 }
 
-int Player::getCardValue()
+int Player::getCardsValue()
 {
 	return cardsValue;
 }

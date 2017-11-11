@@ -13,7 +13,7 @@ SafePlayer::~SafePlayer()
 
 void SafePlayer::shouldStand()
 {
-	if (getCardValue() >= 12)
+	if (cardsValue >= 12)
 		stands = true;
 	else
 		stands = false;

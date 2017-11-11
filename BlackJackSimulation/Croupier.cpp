@@ -13,7 +13,7 @@ Croupier::~Croupier()
 
 void Croupier::shouldStand()
 {
-	if (getCardValue() >= 17)
+	if (cardsValue >= 17)
 		stands= true;
 	else
 		stands = false;
