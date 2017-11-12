@@ -62,9 +62,7 @@ void CustomPlayer::rememberDealersCardValue(std::string card)
 	else if (card == "K")
 		dealersCardValue = 10;
 	else
-	{
 		dealersCardValue = 11;
-	}
 }
 
 void CustomPlayer::nextRound()
