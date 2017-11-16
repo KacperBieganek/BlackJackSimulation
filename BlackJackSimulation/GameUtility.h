@@ -3,6 +3,8 @@
 #include "CustomPlayer.h"
 #include <fstream>
 #include <stack>
+
+// po co to pakować w klasę?
 class GameUtility
 {
 private:

@@ -37,6 +37,7 @@ void CustomPlayer::shouldStand()
 
 void CustomPlayer::rememberDealersCardValue(std::string card)
 {
+	// chyba gdzieś tą terradę if'ów widziałem :P - copy-paste
 	if (card == "2")
 		dealersCardValue = 2;
 	else if (card == "3")

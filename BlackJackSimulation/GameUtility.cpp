@@ -25,7 +25,7 @@ void GameUtility::playGame(std::shared_ptr<Player> player, std::shared_ptr<Playe
 {
 	std::cout << "[Game started with player: " << player->playerName << "]" << std::endl;
 	size_t playerScore=0, croupierScore=0;
-	while (deck.size() >= 4) {
+	while (deck.size() >= 4) { // ten warunek można do funkcji wyordębnić bool isGameEnded()
 		player->nextRound();
 		croupier->nextRound();
 		if (playRound(player, croupier, deck))
@@ -42,11 +42,12 @@ void GameUtility::playGame(std::shared_ptr<Player> player, std::shared_ptr<Playe
 }
 bool GameUtility::playRound(std::shared_ptr<CustomPlayer> player, std::shared_ptr<Player> croupier, std::stack<std::string>& deck)
 {
-	player->drawCard(deck);
+	// funkcja zdecydowanie za długa, do podzielenia na mniejsze
+	player->drawCard(deck);  // do logowania powinna byc osobna klasa, dostarczana z zewnątrz, co byś robił gdybyć miał zrobić obsługę dwóch języków?
 	player->rememberDealersCardValue(croupier->drawCard(deck));
 	player->drawCard(deck);
 	croupier->drawCard(deck);
-	if (player->getCardsValue() == 21)
+	if (player->getCardsValue() == 21) // 21 jest magic numberem, powinna byc zapisana do jakiejś stałej
 	{
 		player->printRoundInfo();
 		croupier->printRoundInfo();
@@ -71,8 +72,8 @@ bool GameUtility::playRound(std::shared_ptr<CustomPlayer> player, std::shared_pt
 		}
 		else
 		{
-			if (player->getCardsValue() > 21)
-			{
+			if (player->getCardsValue() > 21) // a co gdyby zasady zmieniły się tak że warunek wygranej to 25? Musiałbyć podmieniać wszędzie
+			{								// i uważać czy każde 21 jest tym wynikiem
 				player->printRoundInfo();
 				croupier->printRoundInfo();
 				return false;
@@ -91,6 +92,8 @@ bool GameUtility::playRound(std::shared_ptr<CustomPlayer> player, std::shared_pt
 
 bool GameUtility::playRound(std::shared_ptr<Player> player, std::shared_ptr<Player> croupier, std::stack<std::string>& deck)
 {
+	// ta funkcja jest bezczelnym copy-pastem :P
+	// nie rób nigdy tak, dziel na mniejsze i uwspólniaj kod
 	player->drawCard(deck);
 	croupier->drawCard(deck);
 	player->drawCard(deck);
@@ -137,8 +140,9 @@ bool GameUtility::playRound(std::shared_ptr<Player> player, std::shared_ptr<Play
 
 }
 
-
-
+// to powinno znaleźć się w osobnej klasie, np. DeckLoader
+// co jeśli zmieniłby się format pliku przechowującego talię?
+// no i kod wygląda podobnie jak u Szymona Czaii, rzekłbym ten sam
 bool GameUtility::fillDeck(std::string filePath, std::stack<std::string>& deck) {
 	std::ifstream file(filePath, std::ios::in);
 	if (file.is_open()) {

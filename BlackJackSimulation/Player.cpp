@@ -27,6 +27,7 @@ void Player::calculateCardsValue()
 	size_t amountOfAces = 0;
 	for (size_t i = 0; i < cardVector.size(); i++)
 	{
+		// można użyć było funkcji std::stoi()
 		std::string tmp = cardVector.at(i);
 		if (tmp == "2")
 			cardsValue += 2;
@@ -58,7 +59,7 @@ void Player::calculateCardsValue()
 			++amountOfAces;
 		}
 	}
-	while (cardsValue > 21 && amountOfAces--)
+	while (cardsValue > 21 && amountOfAces--) // trochę to zagmatwane dodawać wszystkie wartości żeby później je odjąć
 	{
 		cardsValue -= 10;
 	}
