@@ -63,7 +63,7 @@ bool GameUtility::playRound(std::shared_ptr<CustomPlayer> player, std::shared_pt
 			{
 				player->printRoundInfo();
 				croupier->printRoundInfo();
-				return false;
+				return true;
 			}
 			croupier->shouldStand();
 			if (!croupier->getStands())
@@ -112,7 +112,7 @@ bool GameUtility::playRound(std::shared_ptr<Player> player, std::shared_ptr<Play
 			{
 				player->printRoundInfo();
 				croupier->printRoundInfo();
-				return false;
+				return true;
 			}
 			croupier->shouldStand();
 			if (!croupier->getStands())
